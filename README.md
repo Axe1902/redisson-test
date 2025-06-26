@@ -15,6 +15,7 @@
 Вот ещё неплохой мини гайд -> https://www.baeldung.com/redis-redisson#bd-overview
 
 **Пример такого файла для SingleNode:**  
+```
 singleServerConfig:  
   idleConnectionTimeout: 10000  
   connectTimeout: 10000  
@@ -36,6 +37,7 @@ threads: 16
 nettyThreads: 32  
 codec: !<org.redisson.codec.Kryo5Codec> {}  
 transportMode: "NIO"
+```
 
 **Что касательно применения кеширования в приложении.**  
 Для это на методах сервиса, в которых выполняеются запросы к репозиториям, ставятся аннтотации **@Cacheable**.
@@ -46,5 +48,5 @@ transportMode: "NIO"
   - **@Caching**. Позволяет группировать несколько аннотаций кэширования (например, несколько @CacheEvict или комбинацию @Cacheable и @CachePut) для одного метода;
   - **@CacheConfig**. Класс-уровневая аннотация для задания общих параметров кэширования (например, имя кэша, генератор ключей и т.д.) для всех методов класса.
 
-подробно тут рассписывать не буду, просто прикреплю ссылку на оф документацию: https://docs.spring.io/spring-framework/reference/integration/cache/annotations.html
-В параметрах к аннтотациям необходимо указать 
+В параметрах к аннтотациям необходимо указать имя того кеша, который мы настраивали в менеджере, и ключ, по которому потом redisson его будет искать.   
+Подробно тут рассписывать все параметры не буду, просто прикреплю ссылку на оф документацию: https://docs.spring.io/spring-framework/reference/integration/cache/annotations.html  
